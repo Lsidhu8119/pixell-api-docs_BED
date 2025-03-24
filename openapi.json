@@ -1,0 +1,326 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PiXELL-River Financial API",
+    "version": "1.0.0",
+    "description": "API for managing employees and branches of PiXELL-River Financial"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "Local development server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Employees",
+      "description": "Operations related to employee management"
+    },
+    {
+      "name": "Branches",
+      "description": "Operations related to branch management"
+    }
+  ],
+  "paths": {
+    "/api/v1/branches": {
+      "post": {
+        "summary": "Create a new branch",
+        "tags": [
+          "Branches"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "Downtown Branch",
+                "address": "151 Princess Street",
+                "phone": "+1234567890"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Branch created successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "get": {
+        "summary": "Retrieve all branches",
+        "tags": [
+          "Branches"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of branches."
+          }
+        },
+        "description": "Fetches a list of all branch locations."
+      }
+    },
+    "/api/v1/branches/{id}": {
+      "get": {
+        "summary": "Get a branch by ID",
+        "tags": [
+          "Branches"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "The branch ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Branch details"
+          },
+          "404": {
+            "description": "Branch not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a branch",
+        "tags": [
+          "Branches"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "The branch ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "Notre Dame",
+                "address": "456 Leila St",
+                "phone": "+1987654321"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Branch updated successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Branch not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a branch",
+        "tags": [
+          "Branches"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "The branch ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Branch deleted successfully"
+          },
+          "404": {
+            "description": "Branch not found"
+          }
+        }
+      }
+    },
+    "/api/v1/employees": {
+      "post": {
+        "summary": "Create a new employee",
+        "tags": [
+          "Employees"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "id": "1",
+                "name": "Lovedeep Sidhu",
+                "department": "IT",
+                "branchId": 999,
+                "phone": "204-698-7922",
+                "position": "Software Engineer",
+                "email": "lovedeep@example.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Employee created successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "get": {
+        "summary": "Retrieve all employees",
+        "tags": [
+          "Employees"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of employees."
+          }
+        },
+        "description": "Fetches a list of all employees in the system."
+      }
+    },
+    "/api/v1/employees/{id}": {
+      "get": {
+        "summary": "Get an employee by ID",
+        "tags": [
+          "Employees"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "The employee ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee details"
+          },
+          "404": {
+            "description": "Employee not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an employee",
+        "tags": [
+          "Employees"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "The employee ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "Lovedeep Sidhu",
+                "position": "Senior Developer",
+                "email": "lovedeep@example.com",
+                "branchId": 988
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Employee updated successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Employee not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an employee",
+        "tags": [
+          "Employees"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "The employee ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee deleted successfully"
+          },
+          "404": {
+            "description": "Employee not found"
+          }
+        }
+      }
+    },
+    "/api/v1/employees/branch/{branchId}": {
+      "get": {
+        "summary": "Get all employees for a specific branch",
+        "tags": [
+          "Employees"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "branchId",
+            "required": true,
+            "description": "The branch ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of employees for the branch"
+          },
+          "404": {
+            "description": "No employees found for the branch"
+          }
+        }
+      }
+    },
+    "/api/v1/employees/department/{department}": {
+      "get": {
+        "summary": "Get all employees for a specific department",
+        "tags": [
+          "Employees"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "department",
+            "required": true,
+            "description": "The department name"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of employees for the department"
+          },
+          "404": {
+            "description": "No employees found for the department"
+          }
+        }
+      }
+    }
+  },
+  "components": {}
+}
